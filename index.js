@@ -18,4 +18,16 @@ server.get('/projects', (req, res) => {
   return res.json( projects );
 })
 
+server.put('/projects/:id', (req, res) => {
+  const { id } = req.params;
+
+  const newProjectName = req.body.project;
+  
+  const index = projects.findIndex(item => item.id === id);
+
+  projects[index].project = newProjectName;
+
+  return res.json( projects );
+})
+
 server.listen(3000);
