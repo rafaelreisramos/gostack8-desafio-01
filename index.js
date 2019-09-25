@@ -30,4 +30,14 @@ server.put('/projects/:id', (req, res) => {
   return res.json( projects );
 })
 
+server.delete('/projects/:id', (req, res) => {
+  const { id } = req.params;
+  
+  const index = projects.findIndex(item => item.id === id);
+
+  projects.splice(index, 1);
+
+  return res.json( projects );
+})
+
 server.listen(3000);
