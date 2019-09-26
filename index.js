@@ -7,9 +7,9 @@ server.use(express.json());
 const projects = [];
 
 server.post('/projects', (req, res) => {
-  const { id, project } = req.body;
+  const { id, title } = req.body;
 
-  projects.push({ id: id, project: project, tasks: [] });
+  projects.push({ id: id, title: title, tasks: [] });
 
   return res.json( projects );
 });
@@ -21,11 +21,11 @@ server.get('/projects', (req, res) => {
 server.put('/projects/:id', (req, res) => {
   const { id } = req.params;
 
-  const newProjectName = req.body.project;
+  const newProjectName = req.body.title;
   
   const index = projects.findIndex(item => item.id === id);
 
-  projects[index].project = newProjectName;
+  projects[index].title = newProjectName;
 
   return res.json( projects );
 })
